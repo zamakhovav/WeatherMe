@@ -1,4 +1,4 @@
-package links;
+package URLLinks;
 
 import org.junit.Test;
 
@@ -35,5 +35,13 @@ public class URLLinkGeneratorTest {
         assertEquals(null, URLLinkGenerator.generateURLLinkByCityNameAndCountryCode(null, null));
     }
 
+    @Test
+    public void testURLLinkForEmptyCityAndCountryCode() {
+        assertEquals("api.openweathermap.orf/forecast/2.5/forecast?q=", URLLinkGenerator.generateURLLinkByCityNameAndCountryCode("", "LV"));
+    }
 
+    @Test
+    public void testURLLinkForLatAndLonOfTln() {
+        assertEquals("api.openweathermap.orf/forecast/2.5/forecast?q=", URLLinkGenerator.generateURLLinkByLatitudeAndLongitude(59.4370, 24.7536));
+    }
 }

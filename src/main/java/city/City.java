@@ -5,12 +5,8 @@ package city;
  */
 public class City {
 
-    public City(int cityId, String cityName, String countryCode, int latitude, int longitude) {
+    public City(String cityName, String countryCode, int latitude, int longitude) {
 
-    }
-
-    public int getCityId() {
-        return Integer.MIN_VALUE;
     }
 
     public String getCityName() {

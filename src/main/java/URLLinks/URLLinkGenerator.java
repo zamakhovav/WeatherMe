@@ -1,4 +1,4 @@
-package links;
+package URLLinks;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -7,7 +7,7 @@ import java.util.Locale;
  * Created by nikasamuell on 26/09/2017.
  */
 public class URLLinkGenerator {
-    public static final String API_URL ="api.openweathermap.orf/forecast/2.5/forecast?id=";
+    public static final String API_URL ="api.openweathermap.orf/forecast/2.5/forecast?";
     public static final String API_KEY = "1097a8485fcf07e8a6e80b8b9e101ac3";
 
     public static boolean isCountryCodeValid(String codeCountry) {
@@ -18,15 +18,11 @@ public class URLLinkGenerator {
         return null;
     }
 
-    public static String generateURLLinkByCityNameAndCountryCode(String cityName, String countryCode) {
+    public static String generateURLLinkByCityNameAndCountryCode(String cityName, String zipCode) {
         return null;
     }
 
-    public static String generateURLLinkByLatitudeAndLongitude(int latitude, int longitude) {
-        return null;
-    }
-
-    public static String generateURLLinkByZIPCodeAndCountryCode(int zipCode, String countryCode) {
+    public static String generateURLLinkByLatitudeAndLongitude(double latitude, double longitude) {
         return null;
     }
 }
