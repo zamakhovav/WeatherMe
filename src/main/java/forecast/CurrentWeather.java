@@ -1,12 +1,9 @@
 package forecast;
 
-import city.City;
-import org.junit.Test;
 
+public class CurrentWeather {
 
-public class Weather {
-
-    private Weather() {
+    private CurrentWeather() {
 
     }
 
@@ -34,7 +31,7 @@ public class Weather {
         return Integer.MIN_VALUE;
     }
 
-    public static Weather respondJson(String jSonfile) {
+    public static CurrentWeather respondJson(String jSonfile) {
         return null;
     }
 
