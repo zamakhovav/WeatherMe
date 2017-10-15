@@ -1,27 +1,25 @@
 package city;
 
-/**
- * Created by nikasamuell on 26/09/2017.
- */
 public class City {
+    private String cityName;
+    private String countryCode;
+    private Coordinates coordinates;
 
-    public City(String cityName, String countryCode, int latitude, int longitude) {
-
+    public City(String cityName, String countryCode, Coordinates coordinates) {
+        this.cityName = cityName;
+        this.countryCode = countryCode;
+        this.coordinates = coordinates;
     }
 
     public String getCityName() {
-        return "";
+        return cityName;
     }
 
     public String getCountryCode() {
-        return "";
+        return countryCode;
     }
 
-    public int getLatitude() {
-        return Integer.MIN_VALUE;
-    }
-
-    public int getLongitude() {
-        return Integer.MIN_VALUE;
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 }
