@@ -1,9 +1,8 @@
 package repository;
 
 import exception.WeatherReportNotFoundException;
-import forecast.CurrentWeather;
-import forecast.ForecastWeather;
-import forecast.WeatherRequest;
+import report.CurrentWeather;
+import report.WeatherRequest;
 
 public interface WeatherRepository {
     CurrentWeather getCurrentWeather(WeatherRequest request) throws WeatherReportNotFoundException;
