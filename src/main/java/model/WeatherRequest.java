@@ -1,12 +1,12 @@
-package report;
+package model;
 
 import utility.Constants;
 
+//Data structure
 public class WeatherRequest {
     private String cityName;
     private String cityCode;
     private Constants.Temperature temperature = Constants.Temperature.getTempByDefault();
-
 
     private WeatherRequest() {}
 

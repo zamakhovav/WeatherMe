@@ -1,4 +1,4 @@
-package report;
+package model;
 
 
 import city.City;
@@ -10,7 +10,6 @@ public class CurrentWeather {
     private City city;
     private double currentTemperature;
     private Constants.Temperature temperatureUnits;
-
 
     private CurrentWeather() {}
 
@@ -34,14 +33,13 @@ public class CurrentWeather {
         return temperatureUnits;
     }
 
-    public static CurrentWeather respondJson(String jSonfile) throws WeatherReportNotFoundException{
-        CurrentWeather currentWeatherReport = new CurrentWeather();
+    public CurrentWeather respondJson(String jSonfile) throws WeatherReportNotFoundException{
+        //String cityName, countryCode;
+        //double longtitude, latitude;
 
-        String cityName, countryCode;
-        double longtitude, latitude;
-
-        if (cityName == null) {
+        if (city.getCityName() == null) {
             throw new WeatherReportNotFoundException("Wrong city name");
         }
+        return new CurrentWeather();
     }
 }

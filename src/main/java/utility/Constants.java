@@ -11,4 +11,12 @@ public class Constants {
             return STANDART;
         }
     }
+
+    public enum UNIT {
+        metric, imperial
+    }
+
+    public enum COUNTRY_CODE {
+        EE
+    }
 }

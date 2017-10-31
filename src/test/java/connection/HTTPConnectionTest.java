@@ -11,7 +11,7 @@ public class HTTPConnectionTest {
 
     @Test
     public void testConnectionToAPI() {
-        HttpURLConnection con = HTTPConnection.makeItGetRequested("api.openweathermap.orf/forecast/2.5/forecast?");
+        HttpURLConnection con = HTTPConnection.makeItGetRequested("api.openweathermap.orf/model/2.5/model?");
         try {
             assertEquals(HttpURLConnection.HTTP_OK, con.getResponseCode());
         } catch (IOException e) {
