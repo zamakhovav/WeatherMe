@@ -1,6 +1,7 @@
 package model;
 
 import city.Coordinates;
+import com.google.gson.Gson;
 
 // ITS A DATA STRUCTURE NOT AN OBJECT!
 public class CurrentWeatherReport extends WeatherReport {

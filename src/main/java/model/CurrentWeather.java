@@ -34,8 +34,8 @@ public class CurrentWeather {
     }
 
     public CurrentWeather respondJson(String jSonfile) throws WeatherReportNotFoundException{
-        //String cityName, countryCode;
-        //double longtitude, latitude;
+        String cityName, countryCode;
+        double longtitude, latitude;
 
         if (city.getCityName() == null) {
             throw new WeatherReportNotFoundException("Wrong city name");
