@@ -1,6 +1,8 @@
 package exception;
 
-public class WeatherReportNotFoundException extends Exception {
+import java.io.IOException;
+
+public class WeatherReportNotFoundException extends IOException {
     public WeatherReportNotFoundException(String msg) {
         super(msg);
     }
