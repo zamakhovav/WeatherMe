@@ -1,4 +1,4 @@
-package city;
+package object;
 
 public class City {
     private String cityName;
