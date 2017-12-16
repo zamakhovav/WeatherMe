@@ -6,60 +6,57 @@ import exception.IncorrectAPIOutputEaception;
 import object.City;
 import object.Coordinates;
 import request.WeatherRequest;
+import utility.CurrentWeatherData;
 
 public class CurrentWeatherFactory {
+    //запрос на текующую температуру
 
-    public static CurrentWeather generateReportFromJSONAndRequest(String jSonFile, WeatherRequest request) throws IncorrectAPIOutputEaception {
+    public CurrentWeather generateReportFromJSONAndRequest(String jSonFile, WeatherRequest request) throws IncorrectAPIOutputEaception {
         Gson gson = new GsonBuilder().create();
-        CurrentWeather weather = gson.fromJson(jSonFile, CurrentWeather.class);
+        CurrentWeatherData APIWeather = gson.fromJson(jSonFile, CurrentWeatherData.class);
 
-        String cityName = getCityNameFromAPI(weather);
-        String countryCode = getCountryCodeFromAPI(weather);
-        double[] coords = getCityCoordinatesFromAPI(weather);
-        double currentTemperature = getCurrentTemperatureFromAPI(weather);
+        String cityName = getCityNameFromAPIData(APIWeather);
+        String countryCode = getCountryCodeFromAPIData(APIWeather);
+        double[] coords = getCityCoordinatesFromAPI(APIWeather);
+        double currentTemperature = getCurrentTemperatureFromAPI(APIWeather);
 
         return new CurrentWeather(new City(cityName, countryCode, Coordinates.of(coords[0], coords[1])), currentTemperature, request.getTemperature());
     }
 
-    private static String getCityNameFromAPI(CurrentWeather weather) throws IncorrectAPIOutputEaception {
-        String cityName = weather.getCity();
+    private String getCityNameFromAPIData(CurrentWeatherData weather) throws IncorrectAPIOutputEaception {
+        String cityName = weather.cityName;
         if (cityName == null) {
             throw new IncorrectAPIOutputEaception("Wrong city name");
         }
-
         return cityName;
     }
 
-    private static String getCountryCodeFromAPI(CurrentWeather weather) throws IncorrectAPIOutputEaception {
-        String countryCode = weather.getCountryCode();
-
+    private String getCountryCodeFromAPIData(CurrentWeatherData weather) throws IncorrectAPIOutputEaception {
+        String countryCode = (String) weather.data.get("country");
         if (countryCode == null) {
             throw new IncorrectAPIOutputEaception("Wrong country code");
         }
-
         return countryCode;
     }
 
-    private static double[] getCityCoordinatesFromAPI(CurrentWeather weather) throws IncorrectAPIOutputEaception {
+    private double[] getCityCoordinatesFromAPI(CurrentWeatherData weather) throws IncorrectAPIOutputEaception {
         double[] coords = new double[2];
         try {
-            coords[0] = weather.getCoordinates().getLongitude();
-            coords[1] = weather.getCoordinates().getLatitude();
+            coords[0] = weather.coordinates.get("lon");
+            coords[1] = weather.coordinates.get("lat");
 
             return coords;
         } catch (NullPointerException e) {
             throw new IncorrectAPIOutputEaception("Invalid coordinates");
         }
-
     }
 
-    private static double getCurrentTemperatureFromAPI(CurrentWeather weather) throws IncorrectAPIOutputEaception {
+    private double getCurrentTemperatureFromAPI(CurrentWeatherData weather) throws IncorrectAPIOutputEaception {
         try {
-            return weather.getCurrentTemperature();
+            return Float.parseFloat(weather.mainData.get("temp").toString());
         } catch (NullPointerException e) {
             throw new IncorrectAPIOutputEaception("Wrong current temperature");
         }
 
     }
-
 }

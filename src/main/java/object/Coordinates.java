@@ -24,4 +24,11 @@ public class Coordinates {
         return new Coordinates(longitude, latitude);
     }
 
+    public String toStringOfLongitude() {
+        return Double.toString(longitude);
+    }
+
+    public String toStringOfLatitude() {
+        return Double.toString(latitude);
+    }
 }
