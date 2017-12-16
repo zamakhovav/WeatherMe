@@ -9,21 +9,32 @@ import java.net.URL;
 public class HTTPConnection {
     HttpURLConnection connection;
 
-    public String readResponseFromFile() throws IOException {
-        StringBuilder response = new StringBuilder();
-
+    public String readFromInputStream() throws IOException {
+        StringBuilder builder = new StringBuilder();
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
         String line;
 
         while ((line = reader.readLine()) != null) {
-            response.append(line + "\n");
+            builder.append(line + "\n");
         }
-        return response.toString();
+
+        reader.close();
+
+        return builder.toString();
     }
 
-    public static HTTPConnection makeItGetRequested(String urlLink) throws IOException {
+    public int getResponseCode() throws IOException {
+        return connection.getResponseCode();
+    }
+
+    public void closeConnection() {
+        connection.disconnect();
+    }
+
+    public static HTTPConnection makeConnectionFromURL(String urlLink) throws IOException {
         HTTPConnection httpConnection = new HTTPConnection();
-        httpConnection.connection = (HttpURLConnection) new URL(urlLink).openConnection();
+        httpConnection.connection = (HttpURLConnection) new URL(urlLink).openConnection(); // get object of HttpUrlConnection
         httpConnection.connection.connect();
         return httpConnection;
     }
