@@ -1,22 +1,26 @@
 package file.runner;
 
-import java.io.File;
-import java.io.FileReader;
+import com.google.gson.Gson;
+import exception.IncorrectAPIOutputException;
+import file.FileReader;
+
+
 import java.io.IOException;
-import java.util.Scanner;
 
 public class FileInputReader {
-    public final String FILE = "input.txt";
+    private FileReader reader;
 
-    public String readFromFile() throws IOException {
-        StringBuilder stringInput = new StringBuilder();
-        Scanner scanner = new Scanner(new FileReader(FILE));
+    public FileInputReader(FileReader reader) {
+        this.reader = reader;
+    }
 
-        while (scanner.hasNext()) {
-            stringInput.append(scanner.next());
+    public FileRequest readFromFile(String path) throws IOException {
+        Gson gson = new Gson();
+        try {
+            return gson.fromJson(reader.readFromFile(path), FileRequest.class);
+        } catch (IOException e) {
+            throw new IncorrectAPIOutputException();
         }
-        scanner.close();
-        return stringInput.toString();
     }
 
 }
